@@ -1,0 +1,10 @@
+#header-content {
+  /*display: inline-flex;
+    width: 100%;
+    margin: auto;*/
+  margin: auto;
+  width: 100%;
+}
+p {
+  margin-left: 35px;
+}

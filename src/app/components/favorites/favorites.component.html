@@ -1,0 +1,6 @@
+<div *ngIf="favorites.length" class="favorites-list">
+  <div *ngFor="let favorite of favorites">
+    <app-coin [coin]="favorite"></app-coin>
+  </div>
+</div>
+<div *ngIf="!favorites.length">Adauga din dashboard</div>

@@ -1,0 +1,12 @@
+.coin-card {
+  margin: 5 px;
+  margin-left: 25px;
+  background-color: rgb(238, 234, 234);
+  text-align: center;
+  width: 380px;
+  height: 200px;
+}
+img {
+  border-radius: 50%;
+  border: 2px solid black;
+}

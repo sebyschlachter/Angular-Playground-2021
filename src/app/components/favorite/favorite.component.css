@@ -1,12 +1,27 @@
-.favorite-card {
-  margin: 5px;
-  background-color: white;
+:host {
+  width: 100%;
+  display: flex;
+}
+
+.coin-price {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.mat-card-subtitle,
+.mat-card-title {
+  margin-bottom: 0;
 }
 
 .green {
-  color: rgb(28, 212, 28);
+  color: lightgreen;
 }
 
 .red {
   color: red;
+}
+
+.favorite-card {
+  margin: 4px;
 }

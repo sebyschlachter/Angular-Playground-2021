@@ -2,37 +2,48 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { TodoComponent } from './components/todo/todo.component';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FavoriteComponent } from './components/favorite/favorite.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { CoinComponent } from './components/coin/coin.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
+import { WalletComponent } from './components/wallet/wallet.component';
+import { GraphicComponent } from './components/graphic/graphic.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     TodoComponent,
+    HeaderComponent,
     DashboardComponent,
-    FavoriteComponent,
+    FooterComponent,
     FavoritesComponent,
-    CoinComponent
+    FavoriteComponent,
+    CoinDetailsComponent,
+    WalletComponent,
+    GraphicComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    HttpClientModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatMenuModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

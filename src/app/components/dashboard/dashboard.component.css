@@ -1,10 +1,14 @@
-#header-content {
-  /*display: inline-flex;
-    width: 100%;
-    margin: auto;*/
-  margin: auto;
+#dashboard {
   width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 24px 0;
 }
-p {
-  margin-left: 35px;
+
+.info-container {
+  width: 40%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }

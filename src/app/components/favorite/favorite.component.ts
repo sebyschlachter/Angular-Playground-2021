@@ -1,3 +1,4 @@
+import { CoinInfo } from './../../models/CoinInfo';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./favorite.component.css'],
 })
 export class FavoriteComponent implements OnInit {
-  @Input() coin: any;
+  @Input() coin!: CoinInfo;
+
   constructor() {}
 
   ngOnInit(): void {}

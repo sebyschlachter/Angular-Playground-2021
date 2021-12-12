@@ -1,0 +1,111 @@
+<div class="mat-elevation-z8 table-container">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Info Column -->
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef>Info</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon
+          class="info-icon"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          [matMenuTriggerFor]="menu"
+          >info</mat-icon
+        >
+        <mat-menu #menu="matMenu">
+          <ul>
+            <li mat-menu-item>
+              <img src="{{ element.image }}" width="50" height="50" />
+            </li>
+            <li mat-menu-item>Name: {{ element.name }}</li>
+            <li mat-menu-item>Symbol: {{ element.symbol }}</li>
+            <li mat-menu-item>Current Price: {{ element.current_price }}</li>
+            <li mat-menu-item>Market Rank: {{ element.market_cap_rank }}</li>
+            <li mat-menu-item>High 24h: {{ element.high_24h }}</li>
+            <li mat-menu-item>Low 24h: {{ element.low_24h }}</li>
+            <li mat-menu-item>
+              Price Change 24h: {{ element.price_change_24h.toFixed(2) }}
+            </li>
+            <li mat-menu-item>
+              Price Change Procentage 24h:
+              {{ element.price_change_percentage_24h.toFixed(2) }}%
+            </li>
+            <li mat-menu-item>Total Supply: {{ element.total_supply }}</li>
+            <li mat-menu-item>Max Supply: {{ element.max_supply }}</li>
+            <li mat-menu-item>
+              Last Updated: {{ element.last_updated | date: "medium" }}
+            </li>
+          </ul>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <!-- Image Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.image" width="25" height="25" />
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Current Price Column -->
+    <ng-container matColumnDef="current_price">
+      <th mat-header-cell *matHeaderCellDef>Current Price</th>
+      <td mat-cell *matCellDef="let element">{{ element.current_price }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+
+    <!-- Last Date -->
+    <ng-container matColumnDef="last_updated">
+      <th mat-header-cell *matHeaderCellDef>Last Date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.last_updated | date: "short" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="favorites">
+      <th mat-header-cell *matHeaderCellDef>Favorites</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="favorite-icon" (click)="setFavorite(element)">
+          {{ favoritesSet.has(element.id) ? "star" : "star_outline" }}
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="selected">
+      <th mat-header-cell *matHeaderCellDef>Selected</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon
+          class="selected-icon"
+          (click)="setCoinSelected(element)"
+          [ngClass]="{
+            removeSelected: coinSelectedSet.has(element.id),
+            addSelected: !coinSelectedSet.has(element.id)
+          }"
+        >
+          {{ coinSelectedSet.has(element.id) ? "remove" : "add" }}
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>

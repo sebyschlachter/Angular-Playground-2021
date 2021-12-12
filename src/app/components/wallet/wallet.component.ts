@@ -7,13 +7,13 @@ import { ShareDataService } from 'src/app/services/share-data.service';
   styleUrls: ['./wallet.component.css'],
 })
 export class WalletComponent implements OnInit {
-  public coinId: string;
+  public coinId: string[];
 
   constructor(private sharedData: ShareDataService) {}
 
   ngOnInit(): void {
-    this.sharedData.getCoin().subscribe((coinId) => {
-      this.coinId = coinId;
+    this.sharedData.getCoin().subscribe((ids) => {
+      this.coinId = ids;
       //console.log(coinId);
     });
   }

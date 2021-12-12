@@ -1,6 +1,20 @@
 <mat-card class="container">
   <mat-card-title> Graphic </mat-card-title>
+  <mat-card-subtitle class="subtitle"
+    >Selectati un coin pentru a genera graficul!</mat-card-subtitle
+  >
   <mat-card-content>
-    {{ coinId }}
+    <div
+      echarts
+      [options]="options"
+      [merge]="updateOptions"
+      class="demo-chart"
+    ></div>
+    <mat-slide-toggle
+      [(ngModel)]="isChecked"
+      (change)="changeChartType($event)"
+    >
+      Tip grafic(bar/line): {{ getChartType() }}</mat-slide-toggle
+    >
   </mat-card-content>
 </mat-card>

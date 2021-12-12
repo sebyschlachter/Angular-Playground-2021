@@ -5,37 +5,13 @@
       <th mat-header-cell *matHeaderCellDef>Info</th>
       <td mat-cell *matCellDef="let element">
         <mat-icon
+          [matMenuTriggerFor]="menu"
+          (click)="setSelectedCoin(element)"
           class="info-icon"
           aria-hidden="false"
           aria-label="Example home icon"
-          [matMenuTriggerFor]="menu"
           >info</mat-icon
         >
-        <mat-menu #menu="matMenu">
-          <ul>
-            <li mat-menu-item>
-              <img src="{{ element.image }}" width="50" height="50" />
-            </li>
-            <li mat-menu-item>Name: {{ element.name }}</li>
-            <li mat-menu-item>Symbol: {{ element.symbol }}</li>
-            <li mat-menu-item>Current Price: {{ element.current_price }}</li>
-            <li mat-menu-item>Market Rank: {{ element.market_cap_rank }}</li>
-            <li mat-menu-item>High 24h: {{ element.high_24h }}</li>
-            <li mat-menu-item>Low 24h: {{ element.low_24h }}</li>
-            <li mat-menu-item>
-              Price Change 24h: {{ element.price_change_24h.toFixed(2) }}
-            </li>
-            <li mat-menu-item>
-              Price Change Procentage 24h:
-              {{ element.price_change_percentage_24h.toFixed(2) }}%
-            </li>
-            <li mat-menu-item>Total Supply: {{ element.total_supply }}</li>
-            <li mat-menu-item>Max Supply: {{ element.max_supply }}</li>
-            <li mat-menu-item>
-              Last Updated: {{ element.last_updated | date: "medium" }}
-            </li>
-          </ul>
-        </mat-menu>
       </td>
     </ng-container>
 
@@ -79,21 +55,8 @@
         <mat-icon class="favorite-icon" (click)="setFavorite(element)">
           {{ favoritesSet.has(element.id) ? "star" : "star_outline" }}
         </mat-icon>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="selected">
-      <th mat-header-cell *matHeaderCellDef>Selected</th>
-      <td mat-cell *matCellDef="let element">
-        <mat-icon
-          class="selected-icon"
-          (click)="setCoinSelected(element)"
-          [ngClass]="{
-            removeSelected: coinSelectedSet.has(element.id),
-            addSelected: !coinSelectedSet.has(element.id)
-          }"
-        >
-          {{ coinSelectedSet.has(element.id) ? "remove" : "add" }}
+        <mat-icon (click)="setSelectedCoin(element)">
+          {{ "bar_chart" }}
         </mat-icon>
       </td>
     </ng-container>
@@ -103,9 +66,30 @@
   </table>
 
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
+    [pageSizeOptions]="[10, 20]"
     showFirstLastButtons
     aria-label="Select page of periodic elements"
   >
   </mat-paginator>
+
+  <mat-menu #menu="matMenu">
+    <div *ngIf="selectedCoin" class="info-container">
+      <div>
+        <p><strong>Id:</strong> {{ selectedCoin.id }}</p>
+        <p><strong>Symbol:</strong> {{ selectedCoin.symbol }}</p>
+        <p><strong>Name:</strong> {{ selectedCoin.name }}</p>
+        <p><strong>Current Price:</strong> {{ selectedCoin.current_price }}</p>
+        <p><strong>Last Update:</strong> {{ selectedCoin.last_updated }}</p>
+        <p><strong>My currency:</strong> {{ selectedCoin.my_currency }}</p>
+      </div>
+      <div>
+        <p><strong>Low 24h:</strong> {{ selectedCoin.low_24h }}</p>
+        <p><strong>High 24h:</strong> {{ selectedCoin.high_24h }}</p>
+        <p><strong>Total Volume:</strong> {{ selectedCoin.total_volume }}</p>
+        <p>
+          <strong>Price Change:</strong> {{ selectedCoin.price_change_24h }}
+        </p>
+      </div>
+    </div>
+  </mat-menu>
 </div>

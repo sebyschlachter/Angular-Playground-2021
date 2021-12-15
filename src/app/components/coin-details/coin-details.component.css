@@ -28,3 +28,10 @@
 .removeSelected {
   color: red;
 }
+
+.info-container {
+  display: flex;
+  margin: 16px;
+  justify-content: center;
+  align-items: center;
+}

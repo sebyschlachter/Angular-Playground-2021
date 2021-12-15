@@ -19,39 +19,30 @@ export class CoinDetailsComponent implements OnInit {
     'symbol',
     'last_updated',
     'favorites',
-    'selected',
   ];
   dataSource = new MatTableDataSource<CoinInfo>();
-
+  public selectedCoin: CoinInfo;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   public setFavorite(element: CoinInfo): void {
     if (this.favoritesSet.has(element.id)) {
       this.favoritesSet.delete(element.id);
-      this.sharedData.coin$.next(undefined);
+      //this.sharedData.coin$.next(undefined);
       console.log('deleted');
     } else {
       this.favoritesSet.add(element.id);
-      this.sharedData.coin$.next(element.id);
       console.log('added');
       console.log(this.sharedData.coin$);
     }
-  }
-
-  public setCoinSelected(element: CoinInfo): void {
-    if (this.coinSelectedSet.has(element.id)) {
-      this.coinSelectedSet.delete(element.id);
-      this.sharedData.coinSelected$.next(undefined);
-      console.log('deleted');
-    } else {
-      this.coinSelectedSet.add(element.id);
-      this.sharedData.coinSelected$.next(element.id);
-      console.log('added');
-    }
+    this.sharedData.coin$.next([...this.favoritesSet]);
   }
 
   public favoritesSet = new Set<string>();
-  public coinSelectedSet = new Set<string>();
+
+  public setSelectedCoin(coin: CoinInfo) {
+    this.selectedCoin = coin;
+    this.sharedData.selectedCoin$.next(coin.id);
+  }
   constructor(
     private coinService: CoinsService,
     private sharedData: ShareDataService

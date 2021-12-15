@@ -1,15 +1,13 @@
 .container {
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
 }
 
 :host {
-  margin: 24px 0;
+    margin: 24px 0;
 }
+
 .demo-chart {
-  width: 500px;
-}
-.subtitle {
-  text-align: center;
+    width: 500px;
 }

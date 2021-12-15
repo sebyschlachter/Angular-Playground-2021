@@ -3,35 +3,29 @@
 }
 
 :host {
-  width: 55%;
+    width: 45%;
 }
 
 .mat-row .mat-cell {
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
 }
 
 .mat-row:hover .mat-cell {
-  border-color: black;
+    border-color: black;
 }
 
 .info-icon {
-  color: blue;
+    color: blue;
 }
 
 .favorite-icon {
-  color: orange;
-}
-.addSelected {
-  color: green;
-}
-.removeSelected {
-  color: red;
+    color: orange;
 }
 
 .info-container {
-  display: flex;
-  margin: 16px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    margin: 16px;
+    justify-content: center;
+    align-items: center;
 }

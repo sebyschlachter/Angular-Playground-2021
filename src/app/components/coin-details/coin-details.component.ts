@@ -8,32 +8,25 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-coin-details',
   templateUrl: './coin-details.component.html',
-  styleUrls: ['./coin-details.component.css'],
+  styleUrls: ['./coin-details.component.css']
 })
 export class CoinDetailsComponent implements OnInit {
-  displayedColumns: string[] = [
-    'info',
-    'image',
-    'name',
-    'current_price',
-    'symbol',
-    'last_updated',
-    'favorites',
-  ];
+
+  displayedColumns: string[] = ['info', 'image', 'name', 'current_price', 'symbol', 'last_updated', 'favorites'];
   dataSource = new MatTableDataSource<CoinInfo>();
   public selectedCoin: CoinInfo;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   public setFavorite(element: CoinInfo): void {
-    if (this.favoritesSet.has(element.id)) {
+    if(this.favoritesSet.has(element.id)) {
       this.favoritesSet.delete(element.id);
-      //this.sharedData.coin$.next(undefined);
       console.log('deleted');
     } else {
       this.favoritesSet.add(element.id);
       console.log('added');
-      console.log(this.sharedData.coin$);
     }
+
     this.sharedData.coin$.next([...this.favoritesSet]);
   }
 
@@ -43,10 +36,8 @@ export class CoinDetailsComponent implements OnInit {
     this.selectedCoin = coin;
     this.sharedData.selectedCoin$.next(coin.id);
   }
-  constructor(
-    private coinService: CoinsService,
-    private sharedData: ShareDataService
-  ) {}
+
+  constructor(private coinService: CoinsService, private sharedData: ShareDataService) { }
 
   ngOnInit(): void {
     this.coinService.getCoins().subscribe((data: CoinInfo[]) => {
